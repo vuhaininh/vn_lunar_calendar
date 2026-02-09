@@ -90,6 +90,19 @@ class SolarDate:
         """Convert to Julian Day Number (alias for to_jd)."""
         return self.to_jd()
 
+    def get_hour_info(self, hour: int) -> dict:
+        """Get full Can Chi info for a specific hour on this date.
+
+        Args:
+            hour: Clock hour (0-23).
+
+        Returns:
+            Dict with 'can', 'chi', 'name', 'start', 'end', 'is_lucky'.
+        """
+        from vn_lunar_calendar.canchi import get_hour_info
+        return get_hour_info(hour, self.day, self.month, self.year)
+
+
     def __lt__(self, other: Any) -> bool:
         if not isinstance(other, SolarDate):
             return NotImplemented
